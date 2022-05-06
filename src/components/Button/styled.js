@@ -2,7 +2,6 @@ import styled from "styled-components";
 export const ButtonBase = styled.button`
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
-  font-size: ${({ fontSize }) => fontSize};
   border-radius: ${({ borderRadius }) => borderRadius};
   border: ${({ border }) => border};
   color: ${({ color }) => color};
@@ -17,7 +16,9 @@ export const ButtonBase = styled.button`
       case "base":
         return `height:40px;
                 width:200px;
-                font-weight:bold;`;
+                font-weight:bold;
+                font-size:16px;
+                `;
       case "lg":
         return `height:48px;
                 width:343px;
@@ -27,6 +28,7 @@ export const ButtonBase = styled.button`
   }}
   width: ${({ width }) => width};
   height: ${({ height }) => height};
+  font-size: ${({ fontSize }) => fontSize};
 `;
 
 export const PrimaryButton = styled(ButtonBase)`

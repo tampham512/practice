@@ -13,16 +13,16 @@ const StyleGuide = () => {
         Secondary sm
       </Button>
       <Button type="secondary">Secondary base</Button>
-      <Button type="secondary" size="lg">
-        Secondary lg
+      <Button type="secondary" size="lg" fontSize="22px">
+        Secondary lg size 22px
       </Button>
       <br></br>
       <Button type="gray" size="sm">
-        Gray
+        Gray sm
       </Button>
-      <Button type="gray">Gray</Button>
+      <Button type="gray">Gray base</Button>
       <Button type="gray" size="lg" disabled>
-        Gray
+        Gray lg
       </Button>
 
       <br></br>

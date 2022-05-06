@@ -5,12 +5,13 @@ const Button = ({
   height,
   margin = "10px",
   padding = "8px 15px",
-  fontSize = "16px",
+  fontSize,
   type = "primary",
   size = "base",
   cursor = "pointer",
   border = "none",
   color = "white",
+  borderRadius = "4px",
   disabled,
   children,
 }) => {
@@ -28,6 +29,7 @@ const Button = ({
           size={size}
           height={height}
           disabled={disabled}
+          borderRadius={borderRadius}
         >
           {children}
         </PrimaryButton>
@@ -42,8 +44,10 @@ const Button = ({
           cursor={cursor}
           border={border}
           size={size}
+          height={height}
           color={color}
           disabled={disabled}
+          borderRadius={borderRadius}
         >
           {children}
         </SecondaryButton>
@@ -61,6 +65,7 @@ const Button = ({
           border={border}
           height={height}
           disabled={disabled}
+          borderRadius={borderRadius}
         >
           {children}
         </GrayButton>

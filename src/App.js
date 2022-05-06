@@ -1,4 +1,3 @@
-import StyleGuide from "./pages/StyleGuide";
 import { Link } from "react-router-dom";
 function App() {
   return (
