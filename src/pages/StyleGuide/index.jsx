@@ -9,25 +9,25 @@ const StyleGuide = () => {
       <Button disabled>Primary base</Button>
       <Button size="lg">Primary lg</Button>
       <br></br>
-      <Button typeButton="secondary" size="sm">
+      <Button type="secondary" size="sm">
         Secondary sm
       </Button>
-      <Button typeButton="secondary">Secondary base</Button>
-      <Button typeButton="secondary" size="lg">
+      <Button type="secondary">Secondary base</Button>
+      <Button type="secondary" size="lg">
         Secondary lg
       </Button>
       <br></br>
-      <Button typeButton="gray" size="sm">
+      <Button type="gray" size="sm">
         Gray
       </Button>
-      <Button typeButton="gray">Gray</Button>
-      <Button typeButton="gray" size="lg" disabled>
+      <Button type="gray">Gray</Button>
+      <Button type="gray" size="lg" disabled>
         Gray
       </Button>
 
       <br></br>
-      <Button typeButton="secondary" size="lg" fullWidth>
-        Secondary lg
+      <Button type="secondary" size="lg" width="100%" margin={0}>
+        Secondary width 100%
       </Button>
     </div>
   );

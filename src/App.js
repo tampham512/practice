@@ -1,9 +1,9 @@
-import StyleGuide from './pages/StyleGuide';
-
+import StyleGuide from "./pages/StyleGuide";
+import { Link } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-     <StyleGuide></StyleGuide>
+      <Link to="/style-guide">Click style-guide</Link>
     </div>
   );
 }
