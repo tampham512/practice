@@ -26,7 +26,7 @@ const StyleGuide = () => {
       </Button>
 
       <br></br>
-      <Button $type="secondary" $size="lg" width="100%" $margin={0}>
+      <Button $type="secondary" $size="lg" width="100%" margin={0}>
         Secondary width 100%
       </Button>
     </div>
