@@ -31,6 +31,7 @@ const Button = ({
           height={height}
           disabled={disabled}
           borderRadius={borderRadius}
+          {...props}
         >
           {children}
         </PrimaryButton>
@@ -49,6 +50,7 @@ const Button = ({
           height={height}
           disabled={disabled}
           borderRadius={borderRadius}
+          {...props}
         >
           {children}
         </SecondaryButton>
@@ -67,6 +69,7 @@ const Button = ({
           height={height}
           disabled={disabled}
           borderRadius={borderRadius}
+          {...props}
         >
           {children}
         </GrayButton>
