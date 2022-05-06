@@ -5,28 +5,29 @@ const Button = ({
   height,
   margin = "10px",
   padding = "8px 15px",
-  fontSize,
-  type = "primary",
-  size = "base",
+  $fontSize,
+  $type = "primary",
+  $size = "base",
   cursor = "pointer",
   border = "none",
   color = "white",
   borderRadius = "4px",
   disabled,
   children,
+  ...props
 }) => {
-  switch (type) {
+  switch ($type) {
     case "primary":
       return (
         <PrimaryButton
-          fontSize={fontSize}
+          fontSize={$fontSize}
           width={width}
           margin={margin}
           padding={padding}
           cursor={cursor}
           color={color}
           border={border}
-          size={size}
+          size={$size}
           height={height}
           disabled={disabled}
           borderRadius={borderRadius}
@@ -37,15 +38,15 @@ const Button = ({
     case "secondary":
       return (
         <SecondaryButton
-          fontSize={fontSize}
+          fontSize={$fontSize}
           width={width}
           margin={margin}
           padding={padding}
           cursor={cursor}
-          border={border}
-          size={size}
-          height={height}
           color={color}
+          border={border}
+          size={$size}
+          height={height}
           disabled={disabled}
           borderRadius={borderRadius}
         >
@@ -55,14 +56,14 @@ const Button = ({
     case "gray":
       return (
         <GrayButton
-          fontSize={fontSize}
+          fontSize={$fontSize}
           width={width}
           margin={margin}
           padding={padding}
           cursor={cursor}
-          size={size}
           color={color}
           border={border}
+          size={$size}
           height={height}
           disabled={disabled}
           borderRadius={borderRadius}
