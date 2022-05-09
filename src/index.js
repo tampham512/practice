@@ -10,7 +10,7 @@ import InputGuide from "./pages/InputGuide";
 const GlobalStyle = createGlobalStyle`
 
   body {
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
     font-family: 'Roboto', sans-serif;
   }
 `;

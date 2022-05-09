@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   InputContainer,
   InputBoxBase,
@@ -14,12 +14,16 @@ const Input = ({
   $type = "text",
   status = "base",
   fontSize,
-  fontWeight = "bold",
-  border = "1px solid #333333",
+  fontWeight,
+  border = "1px solid #c1c1c1",
+  color = "#c1c1c1",
+  colorHover = "#333333",
+  colorFocus = "#333333",
+  fontWeightFocus = "bold",
   borderRadius = "8px",
   size = "base",
-  padding = "0 16px 0 14px",
-  margin = "5px 0",
+  margin = "10px 0",
+  gap = "8px",
   placeholder,
   width,
   height,
@@ -27,12 +31,10 @@ const Input = ({
   label,
   fontSizeLabel = "14px",
   fontWeightLabel = "700",
-  marginLabel = "8px 0",
 
   message,
   fontSizeMessage = "14px",
   fontWeightMessage = "700",
-  marginMessage = "5px 0",
 
   prefix,
   typePrefix,
@@ -41,15 +43,22 @@ const Input = ({
 
   ...props
 }) => {
+  const inputRef = useRef(null);
+  const [value, setValue] = useState("");
+
+  const handleClickLabel = () => {
+    inputRef.current.focus();
+  };
+
   switch (status) {
     case "base":
       return (
-        <InputContainer margin={margin}>
+        <InputContainer gap={gap} margin={margin} $value={value}>
           {label && (
             <LabelInput
               fontSizeLabel={fontSizeLabel}
               fontWeightLabel={fontWeightLabel}
-              marginLabel={marginLabel}
+              onClick={handleClickLabel}
             >
               {label}
             </LabelInput>
@@ -58,9 +67,12 @@ const Input = ({
             borderRadius={borderRadius}
             border={border}
             size={size}
-            padding={padding}
             width={width}
             height={height}
+            color={color}
+            colorHover={colorHover}
+            colorFocus={colorFocus}
+            $value={value}
           >
             {prefix && (
               <InputPrefix
@@ -68,6 +80,9 @@ const Input = ({
                 border={border}
                 className={prefix}
                 sizePrefix={sizePrefix}
+                colorHover={colorHover}
+                colorFocus={colorFocus}
+                $value={value}
               ></InputPrefix>
             )}
             <InputBase
@@ -77,6 +92,15 @@ const Input = ({
               fontSize={fontSize}
               fontWeight={fontWeight}
               size={size}
+              ref={inputRef}
+              colorHover={colorHover}
+              fontWeightFocus={fontWeightFocus}
+              colorFocus={colorFocus}
+              color={color}
+              onBlur={(e) => {
+                setValue(e.target.value);
+              }}
+              $value={value}
               {...props}
             ></InputBase>
           </InputBoxBase>
@@ -85,23 +109,24 @@ const Input = ({
 
     case "error":
       return (
-        <InputContainer margin={margin}>
+        <InputContainer gap={gap} margin={margin}>
           {label && (
             <LabelInput
               fontSizeLabel={fontSizeLabel}
               fontWeightLabel={fontWeightLabel}
-              marginLabel={marginLabel}
+              onClick={handleClickLabel}
             >
               {label}
             </LabelInput>
           )}
           <ErrorInputBox
+            $value={value}
             borderRadius={borderRadius}
             border={border}
             size={size}
-            padding={padding}
             width={width}
             height={height}
+            fontWeightFocus={fontWeightFocus}
           >
             {prefix && (
               <ErrorInputPrefix
@@ -109,6 +134,7 @@ const Input = ({
                 border={border}
                 className={prefix}
                 sizePrefix={sizePrefix}
+                $value={value}
               ></ErrorInputPrefix>
             )}
             <InputBase
@@ -118,6 +144,11 @@ const Input = ({
               fontSize={fontSize}
               fontWeight={fontWeight}
               size={size}
+              ref={inputRef}
+              colorHover={colorHover}
+              fontWeightFocus={fontWeightFocus}
+              colorFocus={colorFocus}
+              color={color}
               {...props}
             ></InputBase>
           </ErrorInputBox>
@@ -125,7 +156,6 @@ const Input = ({
             <MessageInput
               fontSizeMessage={fontSizeMessage}
               fontWeightMessage={fontWeightMessage}
-              marginMessage={marginMessage}
             >
               {message}
             </MessageInput>

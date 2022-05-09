@@ -13,8 +13,8 @@ const StyleGuide = () => {
         Secondary sm
       </Button>
       <Button $type="secondary">Secondary base</Button>
-      <Button $type="secondary" $size="lg" $fontSize="22px">
-        Secondary lg size 22px
+      <Button $type="secondary" $size="lg" disabled>
+        Secondary lg
       </Button>
       <br></br>
       <Button $type="gray" $size="sm">
