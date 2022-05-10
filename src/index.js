@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
     font-family: 'Roboto', sans-serif;
+   
+  }
+  *{
+ box-sizing: border-box;
   }
 `;
 const root = ReactDOM.createRoot(document.getElementById("root"));

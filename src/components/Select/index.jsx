@@ -1,41 +1,56 @@
-import React from "react";
-import { SelectBox, SelectBase, OptionBase } from "./styled";
-
-export const Select = ({
+import React, { useState } from "react";
+import { SelectBox, LabelSelect } from "./styled";
+import Select from "react-select";
+const ISelect = ({
   status = "base",
-  placeholder,
-  children,
-  width = "350px",
+  placeholder = "Chọn ..,",
+
+  width = "343px",
   height = "48px",
   color = "#C1C1C1",
+  border = "1px solid #C1C1C1",
   colorHover = "#333333",
-  border = "1px solid #C1C1C1 ",
-  borderRadius = "4px",
-  padding = "0 16px",
-  fontSize = "16px",
+  label,
+  fontSizeLabel = "14px",
+  fontWeightLabel = "700",
+  gap = "8px",
+
+  data,
 }) => {
+  const [value, setValue] = useState("");
+  console.log(value);
   switch (status) {
     case "base":
       return (
-        <SelectBox height={height} width={width}>
-          <SelectBase
-            width={width}
-            height={height}
-            color={color}
-            border={border}
-            borderRadius={borderRadius}
-            padding={padding}
-            fontSize={fontSize}
-            colorHover={colorHover}
-          >
-            <Option value={-1}>{placeholder}</Option>
-            {children}
-          </SelectBase>
+        <SelectBox
+          height={height}
+          width={width}
+          border={border}
+          color={color}
+          colorHover={colorHover}
+          gap={gap}
+          $value={value}
+        >
+          {label && (
+            <LabelSelect
+              fontSizeLabel={fontSizeLabel}
+              fontWeightLabel={fontWeightLabel}
+              // onClick={handleClickLabel}
+            >
+              {label}
+            </LabelSelect>
+          )}
+          <Select
+            placeholder={placeholder}
+            options={data}
+            className="react-select-container"
+            classNamePrefix="react-select"
+            onChange={(e) => {
+              setValue(e.value);
+            }}
+          />
         </SelectBox>
       );
   }
 };
-
-export const Option = ({ value, children }) => {
-  return <OptionBase value={value}>{children}</OptionBase>;
-};
+export default ISelect;

@@ -1,39 +1,63 @@
 import styled from "styled-components";
+
 export const SelectBox = styled.div`
-  height: ${(height) => height};
-  position: relative;
-
-  color: ${({ color }) => color};
   width: ${({ width }) => width};
-`;
-export const SelectBase = styled.select`
-  appearance: none;
-  width: 100%;
-  outline: none;
-  appearance: none;
-  height: ${(height) => height};
-  border: ${({ border }) => border};
-  font-size: ${({ fontSize }) => fontSize};
-  padding: ${({ padding }) => padding};
+  display: flex;
+  flex-direction: column;
+  gap: ${({ gap }) => gap};
+  span {
+    display: none;
+  }
+  .react-select-container {
+    height: ${({ height }) => height};
+    &:hover {
+      .react-select__control {
+        border-color: ${({ colorHover }) => colorHover};
+      }
+      .react-select__placeholder,
+      .react-select__indicator {
+        color: ${({ colorHover }) => colorHover};
+      }
+    }
 
-  &:after {
-    top: 50%;
-    transform: translateY(-50%);
-    right: 16px;
-    content: "";
-    width: 0.8em;
-    height: 0.5em;
-    background-color: #c1c1c1;
-    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-  }
+    .react-select__control {
+      border-color: ${({ colorHover, $value }) => $value && colorHover};
+    }
+    .react-select__indicator {
+      color: ${({ colorHover, $value }) => $value && colorHover};
+    }
 
-  &:hover {
-    border-color: ${({ colorHover }) => colorHover};
-    color: ${({ colorHover }) => colorHover};
-  }
-  &:focus {
-    border-color: ${({ colorHover }) => colorHover};
-    color: ${({ colorHover }) => colorHover};
+    .react-select__control {
+      border: ${({ border }) => border};
+      &--is-focused {
+        border-color: ${({ colorHover }) => colorHover};
+        box-shadow: none !important;
+        color: ${({ colorHover }) => colorHover};
+        .react-select__placeholder,
+        .react-select__indicator {
+          color: ${({ colorHover }) => colorHover};
+        }
+      }
+      &--menu-is-open {
+        .react-select__single-value {
+          font-weight: 700;
+        }
+      }
+    }
+
+    .react-select__menu {
+      .react-select__option {
+        background-color: white;
+        color: ${({ color }) => color};
+        &:hover {
+          color: ${({ colorHover }) => colorHover};
+        }
+      }
+    }
   }
 `;
-export const OptionBase = styled.option``;
+export const LabelSelect = styled.label`
+  display: inline-block;
+  font-size: ${({ fontSizeLabel }) => fontSizeLabel};
+  font-weight: ${({ fontWeightLabel }) => fontWeightLabel};
+`;
