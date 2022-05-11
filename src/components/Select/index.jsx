@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { SelectBox, LabelSelect } from "./styled";
+import {
+  SelectBox,
+  LabelSelect,
+  ErrorSelectBox,
+  MessageSelect,
+} from "./styled";
 import Select from "react-select";
 const ISelect = ({
   status = "base",
-  placeholder = "Chọn ..,",
+  placeholder = "Chọn ...",
+  margin = "16px 0px",
 
   width = "343px",
   height = "48px",
@@ -13,16 +19,57 @@ const ISelect = ({
   label,
   fontSizeLabel = "14px",
   fontWeightLabel = "700",
-  gap = "8px",
+  fontSizeMessage = "14px",
+  fontWeightMessage = "700",
 
+  gap = "8px",
+  message,
   data,
+  onChange,
+  ...props
 }) => {
   const [value, setValue] = useState("");
-  console.log(value);
+
   switch (status) {
     case "base":
       return (
         <SelectBox
+          height={height}
+          width={width}
+          margin={margin}
+          border={border}
+          color={color}
+          colorHover={colorHover}
+          gap={gap}
+          $value={value}
+        >
+          {label && (
+            <LabelSelect
+              fontSizeLabel={fontSizeLabel}
+              fontWeightLabel={fontWeightLabel}
+              // onClick={handleClickLabel}
+            >
+              {label}
+            </LabelSelect>
+          )}
+          <Select
+            placeholder={placeholder}
+            options={data}
+            className="react-select-container"
+            classNamePrefix="react-select"
+            onChange={(e) => {
+              setValue(e.value);
+              onChange(e);
+            }}
+            isSearchable={false}
+            blurInputOnSelect
+            {...props}
+          />
+        </SelectBox>
+      );
+    case "error":
+      return (
+        <ErrorSelectBox
           height={height}
           width={width}
           border={border}
@@ -48,8 +95,19 @@ const ISelect = ({
             onChange={(e) => {
               setValue(e.value);
             }}
+            isSearchable={false}
+            blurInputOnSelect
+            {...props}
           />
-        </SelectBox>
+          {message && (
+            <MessageSelect
+              fontSizeMessage={fontSizeMessage}
+              fontWeightMessage={fontWeightMessage}
+            >
+              {message}
+            </MessageSelect>
+          )}
+        </ErrorSelectBox>
       );
   }
 };
