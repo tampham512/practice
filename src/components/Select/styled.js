@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const SelectBox = styled.div`
+  position: relative;
   width: ${({ width }) => width};
   display: flex;
   flex-direction: column;
@@ -53,6 +54,26 @@ export const SelectBox = styled.div`
       fill: ${({ colorHover }) => colorHover};
     }
   }
+  .ant-select-item {
+    background-color: white;
+  }
+
+  .ant-select-item-option-content {
+    color: ${({ color }) => color};
+    font-size: ${({ fontSize }) => fontSize};
+  }
+  .ant-select-item-option-active {
+    .ant-select-item-option-content {
+      background-color: white;
+      color: ${({ colorHover }) => colorHover};
+    }
+  }
+  .ant-select-item-option-selected {
+    .ant-select-item-option-content {
+      color: ${({ colorHover }) => colorHover};
+      font-weight: 400;
+    }
+  }
 `;
 export const LabelSelect = styled.label`
   display: inline-block;
@@ -60,7 +81,11 @@ export const LabelSelect = styled.label`
   font-weight: ${({ fontWeightLabel }) => fontWeightLabel};
 `;
 
-export const ErrorSelectBox = styled(SelectBox)``;
+export const ErrorSelectBox = styled(SelectBox)`
+  .ant-select-selector {
+    border-color: red !important;
+  }
+`;
 
 export const MessageSelect = styled.label`
   display: inline-block;

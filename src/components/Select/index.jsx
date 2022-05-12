@@ -64,6 +64,7 @@ const ISelect = ({
               formik && formik.setFieldValue(name, value);
               setValue(value);
             }}
+            getPopupContainer={(trigger) => trigger.parentNode}
             {...props}
           >
             {dataCustom &&
@@ -75,6 +76,54 @@ const ISelect = ({
               ))}
           </Select>
         </SelectBox>
+      );
+    case "error":
+      return (
+        <ErrorSelectBox
+          height={height}
+          width={width}
+          margin={margin}
+          border={border}
+          color={color}
+          colorHover={colorHover}
+          fontSize={fontSize}
+          gap={gap}
+          $value={value}
+        >
+          {label && (
+            <LabelSelect
+              fontSizeLabel={fontSizeLabel}
+              fontWeightLabel={fontWeightLabel}
+            >
+              {label}
+            </LabelSelect>
+          )}
+          <Select
+            placeholder={placeholder}
+            onChange={(value) => {
+              formik && formik.setFieldValue(name, value);
+              setValue(value);
+            }}
+            getPopupContainer={(trigger) => trigger.parentNode}
+            {...props}
+          >
+            {dataCustom &&
+              dataCustom.length > 0 &&
+              dataCustom.map((item, index) => (
+                <Option value={item.value} key={index}>
+                  {item.label}
+                </Option>
+              ))}
+          </Select>
+          {message && (
+            <MessageSelect
+              fontSizeMessage={fontSizeMessage}
+              fontWeightMessage={fontWeightMessage}
+            >
+              {message}
+            </MessageSelect>
+          )}
+        </ErrorSelectBox>
       );
   }
 };

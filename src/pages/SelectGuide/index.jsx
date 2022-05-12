@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ISelect from "../../components/Select";
 
 import Button from "../../components/Button";
@@ -15,6 +15,7 @@ const SelectGuide = () => {
   const formik = useFormik({
     initialValues: {
       provinces: "",
+      provinces01: "",
     },
 
     onSubmit: (values) => {
@@ -34,6 +35,8 @@ const SelectGuide = () => {
         ></ISelect>
         <ISelect
           label="Tỉnh/Thành phố"
+          status="error"
+          message="Tỉnh thành không được để trống"
           placeholder="Chọn Tỉnh/Thành phố"
           name="provinces01"
           id="provinces01"
