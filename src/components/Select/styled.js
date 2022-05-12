@@ -6,58 +6,51 @@ export const SelectBox = styled.div`
   flex-direction: column;
   gap: ${({ gap }) => gap};
   margin: ${({ margin }) => margin};
-  span {
-    display: none;
-  }
-  .react-select-container {
-    height: ${({ height }) => height};
-    &:hover {
-      .react-select__control {
-        border-color: ${({ colorHover }) => colorHover};
-      }
-      .react-select__placeholder,
-      .react-select__indicator {
-        color: ${({ colorHover }) => colorHover};
-      }
+
+  .ant-select {
+    background-color: white;
+    font-size: ${({ fontSize }) => fontSize};
+    .ant-select-selector {
+      box-shadow: none !important;
+      height: ${({ height }) => height};
+    }
+    .ant-select-selection-placeholder {
+      line-height: ${({ height }) => height};
+    }
+    .ant-select-selection-item {
+      line-height: ${({ height }) => height};
     }
 
-    .react-select__control {
-      border: ${({ border }) => border};
-      height: ${({ height }) => height};
-      &--is-focused {
+    &:hover {
+      .ant-select-selector {
         border-color: ${({ colorHover }) => colorHover};
-        box-shadow: none !important;
-        color: ${({ colorHover }) => colorHover};
-        .react-select__placeholder,
-        .react-select__indicator {
-          color: ${({ colorHover }) => colorHover};
-        }
       }
-      &--menu-is-open {
-        .react-select__single-value {
-          font-weight: 700;
-        }
-        .react-select__indicator {
-          transform: rotateX(180deg);
-        }
+      .ant-select-selection-placeholder {
+        color: ${({ colorHover }) => colorHover};
+      }
+      .ant-select-arrow span svg {
+        fill: ${({ colorHover }) => colorHover};
       }
     }
-    .react-select__control {
+    .ant-select-selector {
       border-color: ${({ colorHover, $value }) => $value && colorHover};
     }
-    .react-select__indicator {
-      color: ${({ colorHover, $value }) => $value && colorHover};
+    .ant-select-arrow span svg {
+      fill: ${({ colorHover, $value }) => $value && colorHover};
     }
-
-    .react-select__menu {
-      margin-top: 5px;
-      .react-select__option {
-        background-color: white;
-        color: ${({ color }) => color};
-        &:hover {
-          color: ${({ colorHover }) => colorHover};
-        }
-      }
+    .ant-select-item.ant-select-item-group {
+      color: red;
+    }
+  }
+  .ant-select-focused {
+    .ant-select-selector {
+      border-color: ${({ colorHover }) => colorHover} !important;
+    }
+    .ant-select-selection-placeholder {
+      color: ${({ colorHover }) => colorHover};
+    }
+    .ant-select-arrow span svg {
+      fill: ${({ colorHover }) => colorHover};
     }
   }
 `;
@@ -67,11 +60,8 @@ export const LabelSelect = styled.label`
   font-weight: ${({ fontWeightLabel }) => fontWeightLabel};
 `;
 
-export const ErrorSelectBox = styled(SelectBox)`
-  .react-select__control {
-    border-color: red !important;
-  }
-`;
+export const ErrorSelectBox = styled(SelectBox)``;
+
 export const MessageSelect = styled.label`
   display: inline-block;
   font-size: ${({ fontSizeMessage }) => fontSizeMessage};

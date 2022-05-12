@@ -1,6 +1,9 @@
 import React from "react";
 import ISelect from "../../components/Select";
 
+import Button from "../../components/Button";
+import { useFormik } from "formik";
+
 const options = [
   { value: "quang_nam", label: "Quảng Nam" },
   { value: "quang-ngai", label: "Quảng Ngãi" },
@@ -9,26 +12,38 @@ const options = [
 ];
 
 const SelectGuide = () => {
+  const formik = useFormik({
+    initialValues: {
+      provinces: "",
+    },
+
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   return (
     <>
-      <ISelect
-        data={options}
-        placeholder="Chọn Tỉnh/Thành phố"
-        label="Tỉnh/Thành phố"
-        onChange={(e) => {
-          console.log(e);
-        }}
-      ></ISelect>
-      <ISelect
-        data={options}
-        placeholder="Chọn Tỉnh/Thành phố"
-        label="Tỉnh/Thành phố"
-        onChange={(e) => {
-          console.log(e);
-        }}
-        status="error"
-        message="Tỉnh thành phố không được để trống"
-      ></ISelect>
+      <form onSubmit={formik.handleSubmit}>
+        <ISelect
+          label="Tỉnh/Thành phố"
+          placeholder="Chọn Tỉnh/Thành phố"
+          name="provinces"
+          id="provinces"
+          formik={formik}
+          dataCustom={options}
+        ></ISelect>
+        <ISelect
+          label="Tỉnh/Thành phố"
+          placeholder="Chọn Tỉnh/Thành phố"
+          name="provinces01"
+          id="provinces01"
+          formik={formik}
+          dataCustom={options}
+        ></ISelect>
+        <Button htmlType="submit" width="160px" height="40px" $fontSize="15px">
+          Submit
+        </Button>
+      </form>
     </>
   );
 };

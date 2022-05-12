@@ -5,11 +5,15 @@ import {
   ErrorSelectBox,
   MessageSelect,
 } from "./styled";
-import Select from "react-select";
+import { Select } from "antd";
+
+const { Option } = Select;
+
 const ISelect = ({
   status = "base",
   placeholder = "Chọn ...",
-  margin = "16px 0px",
+  margin = "16px 0",
+  fontSize = "16px",
 
   width = "343px",
   height = "48px",
@@ -25,7 +29,9 @@ const ISelect = ({
   gap = "8px",
   message,
   data,
-  onChange,
+  name,
+  formik,
+  dataCustom,
   ...props
 }) => {
   const [value, setValue] = useState("");
@@ -40,6 +46,7 @@ const ISelect = ({
           border={border}
           color={color}
           colorHover={colorHover}
+          fontSize={fontSize}
           gap={gap}
           $value={value}
         >
@@ -47,67 +54,27 @@ const ISelect = ({
             <LabelSelect
               fontSizeLabel={fontSizeLabel}
               fontWeightLabel={fontWeightLabel}
-              // onClick={handleClickLabel}
             >
               {label}
             </LabelSelect>
           )}
           <Select
             placeholder={placeholder}
-            options={data}
-            className="react-select-container"
-            classNamePrefix="react-select"
-            onChange={(e) => {
-              setValue(e.value);
-              onChange(e);
+            onChange={(value) => {
+              formik && formik.setFieldValue(name, value);
+              setValue(value);
             }}
-            isSearchable={false}
-            blurInputOnSelect
             {...props}
-          />
+          >
+            {dataCustom &&
+              dataCustom.length > 0 &&
+              dataCustom.map((item, index) => (
+                <Option value={item.value} key={index}>
+                  {item.label}
+                </Option>
+              ))}
+          </Select>
         </SelectBox>
-      );
-    case "error":
-      return (
-        <ErrorSelectBox
-          height={height}
-          width={width}
-          border={border}
-          color={color}
-          colorHover={colorHover}
-          gap={gap}
-          $value={value}
-        >
-          {label && (
-            <LabelSelect
-              fontSizeLabel={fontSizeLabel}
-              fontWeightLabel={fontWeightLabel}
-              // onClick={handleClickLabel}
-            >
-              {label}
-            </LabelSelect>
-          )}
-          <Select
-            placeholder={placeholder}
-            options={data}
-            className="react-select-container"
-            classNamePrefix="react-select"
-            onChange={(e) => {
-              setValue(e.value);
-            }}
-            isSearchable={false}
-            blurInputOnSelect
-            {...props}
-          />
-          {message && (
-            <MessageSelect
-              fontSizeMessage={fontSizeMessage}
-              fontWeightMessage={fontWeightMessage}
-            >
-              {message}
-            </MessageSelect>
-          )}
-        </ErrorSelectBox>
       );
   }
 };
