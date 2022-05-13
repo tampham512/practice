@@ -27,7 +27,7 @@ const ISelect = ({
   fontWeightMessage = "700",
 
   gap = "8px",
-  message,
+  errorMessage,
   data,
   name,
   formik,
@@ -35,6 +35,8 @@ const ISelect = ({
   ...props
 }) => {
   const [value, setValue] = useState("");
+
+  status = errorMessage ? "error" : "base";
 
   switch (status) {
     case "base":
@@ -115,12 +117,12 @@ const ISelect = ({
                 </Option>
               ))}
           </Select>
-          {message && (
+          {errorMessage && (
             <MessageSelect
               fontSizeMessage={fontSizeMessage}
               fontWeightMessage={fontWeightMessage}
             >
-              {message}
+              {errorMessage}
             </MessageSelect>
           )}
         </ErrorSelectBox>

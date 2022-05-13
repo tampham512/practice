@@ -9,6 +9,7 @@
     "antd": "^4.20.4",
     "formik": "^2.2.9",
     "has-flag": "^5.0.1",
+    "moment": "^2.29.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",

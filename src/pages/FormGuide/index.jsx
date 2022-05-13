@@ -2,12 +2,14 @@ import React from "react";
 
 import { useFormik, FieldArray, FormikProvider } from "formik";
 
-import { Radio, Checkbox } from "antd";
+import { Radio, Checkbox, DatePicker, TimePicker } from "antd";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import ISelect from "../../components/Select";
 import * as yup from "yup";
 import { FieldArrayStyled } from "./styled";
+
+import moment from "moment";
 
 const options = [
   { value: "quang_nam", label: "Quảng Nam" },
@@ -29,6 +31,9 @@ const optionsRadio = [
 const validationSchema = yup.object({
   fullname: yup.string().required("Vui lòng nhập Tên đăng nhập/Email"),
   provinces: yup.string().required("Vui lòng chọn Tỉnh/Thành phố"),
+  timePicker: yup.string().required(),
+  datePicker: yup.string().required(),
+  rangePicker: yup.array().required(),
 });
 
 function FormGuide() {
@@ -43,6 +48,9 @@ function FormGuide() {
           email: "",
         },
       ],
+      timePicker: "",
+      datePicker: "",
+      rangePicker: "",
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -67,10 +75,7 @@ function FormGuide() {
         onChange={(e) => {
           formik.setFieldValue("fullname", e.target.value);
         }}
-        status={
-          formik.touched.fullname && formik.errors.fullname ? "error" : "base"
-        }
-        message={formik.touched.fullname && formik.errors.fullname}
+        errorMessage={formik.touched.fullname && formik.errors.fullname}
       />
       <ISelect
         label="Tỉnh/Thành phố"
@@ -79,10 +84,7 @@ function FormGuide() {
         value={formik.values.provinces || null}
         formik={formik}
         dataCustom={options}
-        status={
-          formik.touched.provinces && formik.errors.provinces ? "error" : "base"
-        }
-        message={formik.touched.provinces && formik.errors.provinces}
+        errorMessage={formik.touched.provinces && formik.errors.provinces}
       />
       <div>
         <Checkbox.Group
@@ -106,7 +108,6 @@ function FormGuide() {
           value={formik.values.radio}
         />
       </div>
-
       <br />
       <div>
         <FormikProvider value={formik}>
@@ -127,7 +128,6 @@ function FormGuide() {
                             `arrayField.${index}.email`,
                             e.target.value
                           );
-                          console.log(e.target.value);
                         }}
                       />
                       <Button
@@ -156,7 +156,54 @@ function FormGuide() {
           </FieldArray>
         </FormikProvider>
       </div>
-
+      <br></br>
+      <div>
+        <DatePicker
+          style={{ width: "343px" }}
+          defaultValue={moment(new Date(), "DD/MM/YYYY")}
+          format="DD/MM/YYYY"
+          value={formik.values.datePicker}
+          onChange={(time) => {
+            formik.setFieldValue("datePicker", time);
+          }}
+          status={
+            formik.touched.datePicker && formik.errors.datePicker ? "error" : ""
+          }
+        />
+      </div>
+      <br></br>
+      <div>
+        <TimePicker
+          style={{ width: "343px" }}
+          name="timePicker"
+          defaultValue={moment("00:00:00", "HH:mm:ss")}
+          value={formik.values.timePicker}
+          onChange={(time) => {
+            formik.setFieldValue("timePicker", time);
+          }}
+          status={
+            formik.touched.timePicker && formik.errors.timePicker ? "error" : ""
+          }
+        />
+      </div>
+      <br></br>
+      <div>
+        <TimePicker.RangePicker
+          style={{ width: "343px" }}
+          name="rangePicker"
+          value={formik.values.rangePicker}
+          onChange={(time) => {
+            formik.setFieldValue("rangePicker", time);
+          }}
+          status={
+            formik.touched.rangePicker && formik.errors.rangePicker
+              ? "error"
+              : ""
+          }
+        />
+        ;
+      </div>
+      <br></br>
       <Button
         htmlType="submit"
         width="343px"

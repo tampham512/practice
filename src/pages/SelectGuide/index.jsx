@@ -35,8 +35,7 @@ const SelectGuide = () => {
         ></ISelect>
         <ISelect
           label="Tỉnh/Thành phố"
-          status="error"
-          message="Tỉnh thành không được để trống"
+          errorMessage="Tỉnh thành không được để trống"
           placeholder="Chọn Tỉnh/Thành phố"
           name="provinces01"
           id="provinces01"

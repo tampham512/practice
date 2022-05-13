@@ -32,7 +32,7 @@ const Input = ({
   fontSizeLabel = "14px",
   fontWeightLabel = "700",
 
-  message,
+  errorMessage,
   fontSizeMessage = "14px",
   fontWeightMessage = "700",
 
@@ -49,6 +49,7 @@ const Input = ({
   const handleClickLabel = () => {
     inputRef.current.focus();
   };
+  status = errorMessage ? "error" : "base";
 
   switch (status) {
     case "base":
@@ -157,12 +158,12 @@ const Input = ({
               {...props}
             ></InputBase>
           </ErrorInputBox>
-          {message && (
+          {errorMessage && (
             <MessageInput
               fontSizeMessage={fontSizeMessage}
               fontWeightMessage={fontWeightMessage}
             >
-              {message}
+              {errorMessage}
             </MessageInput>
           )}
         </InputContainer>
