@@ -40,7 +40,7 @@ const Input = ({
   typePrefix,
   sizePrefix = "24px",
   paddingPrefix = "0 16px",
-
+  onChange,
   ...props
 }) => {
   const inputRef = useRef(null);
@@ -97,8 +97,9 @@ const Input = ({
               fontWeightFocus={fontWeightFocus}
               colorFocus={colorFocus}
               color={color}
-              onBlur={(e) => {
+              onChange={(e) => {
                 setValue(e.target.value);
+                onChange(e);
               }}
               $value={value}
               {...props}
@@ -149,6 +150,10 @@ const Input = ({
               fontWeightFocus={fontWeightFocus}
               colorFocus={colorFocus}
               color={color}
+              onChange={(e) => {
+                setValue(e.target.value);
+                onChange(e);
+              }}
               {...props}
             ></InputBase>
           </ErrorInputBox>
