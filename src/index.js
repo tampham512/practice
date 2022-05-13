@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createGlobalStyle } from "styled-components";
 import "./assets/boxicons-2.0.7/css/boxicons.min.css";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import App from "./App";
 import StyleGuide from "./pages/StyleGuide/index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";

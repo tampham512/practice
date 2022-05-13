@@ -39,9 +39,6 @@ export const SelectBox = styled.div`
     .ant-select-arrow span svg {
       fill: ${({ colorHover, $value }) => $value && colorHover};
     }
-    .ant-select-item.ant-select-item-group {
-      color: red;
-    }
   }
   .ant-select-focused {
     .ant-select-selector {
@@ -52,6 +49,21 @@ export const SelectBox = styled.div`
     }
     .ant-select-arrow span svg {
       fill: ${({ colorHover }) => colorHover};
+    }
+    .ant-select-selection-item {
+      color: ${({ colorHover }) => colorHover};
+    }
+  }
+  .ant-select-open {
+    .ant-select-selection-placeholder {
+      color: ${({ colorHover }) => colorHover};
+      font-weight: bold;
+    }
+    .ant-select-selection-item {
+      font-weight: bold;
+    }
+    .ant-select-arrow span svg {
+      transform: rotateX(180deg);
     }
   }
   .ant-select-item {
@@ -83,7 +95,18 @@ export const LabelSelect = styled.label`
 
 export const ErrorSelectBox = styled(SelectBox)`
   .ant-select-selector {
-    border-color: red !important;
+    border-color: red !important ;
+    .ant-select-selection-placeholder {
+      color: ${({ colorHover }) => colorHover};
+    }
+  }
+  .ant-select-arrow span svg {
+    fill: ${({ colorHover }) => colorHover};
+  }
+  .ant-select-focused {
+    .ant-select-selector {
+      border-color: red !important;
+    }
   }
 `;
 
