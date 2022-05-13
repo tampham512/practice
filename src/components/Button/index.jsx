@@ -3,7 +3,7 @@ import { PrimaryButton, SecondaryButton, GrayButton } from "./styled";
 const Button = ({
   width,
   height,
-  margin = "10px",
+  margin = "10px 0",
   padding = "8px 15px",
   $fontSize,
   $type = "primary",

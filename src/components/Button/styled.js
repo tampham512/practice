@@ -9,12 +9,13 @@ export const ButtonBase = styled.button`
   ${({ size }) => {
     switch (size) {
       case "sm":
-        return `height:35px;
-                width:130px;
+        return `height:40px;
+                width:140px;
                 font-size:15px;
+                font-weight:bold;
              `;
       case "base":
-        return `height:40px;
+        return `height:44px;
                 width:200px;
                 font-weight:bold;
                 font-size:16px;
@@ -42,6 +43,7 @@ export const PrimaryButton = styled(ButtonBase)`
   }
   &:disabled {
     background-color: #999999;
+    cursor: not-allowed;
   }
 `;
 
@@ -49,18 +51,18 @@ export const SecondaryButton = styled(ButtonBase)`
   background-color: #fff;
   color: #ff0000;
   border: 1px solid #ff0000;
-  &:hover {
-    border-color: rgba(255, 0, 0, 0.7);
-  }
+  &:hover,
   &:active,
   &:focus {
-    border-color: #c20000;
-    color: #c20000;
+    border-width: 2px;
+    border-width: 2px;
   }
 
   &:disabled {
     border-color: #999999;
     color: #999999;
+    cursor: not-allowed;
+    border-width: 1px;
   }
 `;
 export const GrayButton = styled(ButtonBase)`
@@ -75,5 +77,6 @@ export const GrayButton = styled(ButtonBase)`
   }
   &:disabled {
     background-color: #999999;
+    cursor: not-allowed;
   }
 `;
