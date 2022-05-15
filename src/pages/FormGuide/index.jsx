@@ -10,6 +10,10 @@ import * as yup from "yup";
 import { FieldArrayStyled } from "./styled";
 
 import moment from "moment";
+import IRadio from "../../components/Radio";
+import ICheckbox from "../../components/Checkbox";
+import IDatePicker from "../../components/DatePicker";
+import ITimePicker from "../../components/TimePicker";
 
 const options = [
   { value: "quang_nam", label: "Quảng Nam" },
@@ -62,7 +66,6 @@ function FormGuide() {
       }, 500);
     },
   });
-  console.log();
   return (
     <form onSubmit={formik.handleSubmit}>
       <Input
@@ -86,28 +89,23 @@ function FormGuide() {
         dataCustom={options}
         errorMessage={formik.touched.provinces && formik.errors.provinces}
       />
-      <div>
-        <Checkbox.Group
-          name="check"
-          options={optionsCheckBox}
-          value={formik.values.check}
-          onChange={(checkedValues) => {
-            formik.setFieldValue("check", checkedValues);
-          }}
-        />
-      </div>
+
+      <ICheckbox
+        name="check"
+        options={optionsCheckBox}
+        value={formik.values.check}
+        formik={formik}
+      />
+
       <br />
-      <div>
-        <Radio.Group
-          label="Chọn Radio"
-          name="radio"
-          options={optionsRadio}
-          onChange={(e) => {
-            formik.setFieldValue("radio", e.target.value);
-          }}
-          value={formik.values.radio}
-        />
-      </div>
+
+      <IRadio
+        name="radio"
+        options={optionsRadio}
+        formik={formik}
+        value={formik.values.radio}
+      />
+
       <br />
       <div>
         <FormikProvider value={formik}>
@@ -156,54 +154,47 @@ function FormGuide() {
           </FieldArray>
         </FormikProvider>
       </div>
-      <br></br>
-      <div>
-        <DatePicker
-          style={{ width: "343px" }}
-          defaultValue={moment(new Date(), "DD/MM/YYYY")}
-          format="DD/MM/YYYY"
-          value={formik.values.datePicker}
-          onChange={(time) => {
-            formik.setFieldValue("datePicker", time);
-          }}
-          status={
-            formik.touched.datePicker && formik.errors.datePicker ? "error" : ""
-          }
-        />
-      </div>
-      <br></br>
-      <div>
-        <TimePicker
-          style={{ width: "343px" }}
-          name="timePicker"
-          defaultValue={moment("00:00:00", "HH:mm:ss")}
-          value={formik.values.timePicker}
-          onChange={(time) => {
-            formik.setFieldValue("timePicker", time);
-          }}
-          status={
-            formik.touched.timePicker && formik.errors.timePicker ? "error" : ""
-          }
-        />
-      </div>
-      <br></br>
-      <div>
-        <TimePicker.RangePicker
-          style={{ width: "343px" }}
-          name="rangePicker"
-          value={formik.values.rangePicker}
-          onChange={(time) => {
-            formik.setFieldValue("rangePicker", time);
-          }}
-          status={
-            formik.touched.rangePicker && formik.errors.rangePicker
-              ? "error"
-              : ""
-          }
-        />
-        ;
-      </div>
-      <br></br>
+      <br />
+
+      <IDatePicker
+        name="datePicker"
+        style={{ width: "343px" }}
+        defaultValue={moment(new Date(), "DD/MM/YYYY")}
+        format="DD/MM/YYYY"
+        value={formik.values.datePicker}
+        formik={formik}
+        status={
+          formik.touched.datePicker && formik.errors.datePicker ? "error" : ""
+        }
+      />
+
+      <br />
+
+      <ITimePicker
+        style={{ width: "343px" }}
+        name="timePicker"
+        defaultValue={moment("00:00:00", "HH:mm:ss")}
+        value={formik.values.timePicker}
+        formik={formik}
+        status={
+          formik.touched.timePicker && formik.errors.timePicker ? "error" : ""
+        }
+      />
+
+      <br />
+
+      <ITimePicker
+        $type="range"
+        style={{ width: "343px" }}
+        name="rangePicker"
+        value={formik.values.rangePicker}
+        formik={formik}
+        status={
+          formik.touched.rangePicker && formik.errors.rangePicker ? "error" : ""
+        }
+      />
+
+      <br />
       <Button
         htmlType="submit"
         width="343px"
