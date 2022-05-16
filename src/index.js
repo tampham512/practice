@@ -8,6 +8,7 @@ import StyleGuide from "./pages/StyleGuide/index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InputGuide from "./pages/InputGuide";
 import SelectGuide from "./pages/SelectGuide";
+import FormGuide from "./pages/FormGuide";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -30,7 +31,9 @@ root.render(
         <Route path="/" element={<App />}></Route>
         <Route path="/style-guide" element={<StyleGuide />}></Route>
         <Route path="/input-style-guide" element={<InputGuide />}></Route>
+
         <Route path="/select-style-guide" element={<SelectGuide />}></Route>
+        <Route path="/form-style-guide" element={<FormGuide />}></Route>
       </Routes>
     </BrowserRouter>
   </>

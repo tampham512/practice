@@ -15,8 +15,7 @@ const InputGuide = () => {
           placeholder="Tên đăng nhập/Email"
           prefix="bx bx-user-circle"
           width="400px"
-          status="error"
-          message="Tên đăng nhập/Email không đúng"
+          errorMessage="Tên đăng nhập/Email không đúng"
         />
       </div>
       <div>
@@ -29,8 +28,7 @@ const InputGuide = () => {
           $type="password"
           placeholder="Nhập mật khẩu"
           prefix="bx bx-lock-alt"
-          status="error"
-          message="Mật khẩu không chính xác"
+          errorMessage="Mật khẩu không chính xác"
         />
       </div>
       <div>
@@ -43,8 +41,7 @@ const InputGuide = () => {
           label="Tên đăng nhập/Email"
           placeholder="Tên đăng nhập/Email"
           width="400px"
-          status="error"
-          message="Tên đăng nhập/Email không đúng"
+          errorMessage="Tên đăng nhập/Email không đúng"
         />
       </div>
     </InputGuideContainer>

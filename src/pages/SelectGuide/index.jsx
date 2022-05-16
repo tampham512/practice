@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import ISelect from "../../components/Select";
+import React from "react";
+import Select from "../../components/Select";
 
 import Button from "../../components/Button";
 import { useFormik } from "formik";
@@ -25,24 +25,23 @@ const SelectGuide = () => {
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
-        <ISelect
+        <Select
           label="Tỉnh/Thành phố"
           placeholder="Chọn Tỉnh/Thành phố"
           name="provinces"
           id="provinces"
           formik={formik}
           dataCustom={options}
-        ></ISelect>
-        <ISelect
+        ></Select>
+        <Select
           label="Tỉnh/Thành phố"
-          status="error"
-          message="Tỉnh thành không được để trống"
+          errorMessage="Tỉnh thành không được để trống"
           placeholder="Chọn Tỉnh/Thành phố"
           name="provinces01"
           id="provinces01"
           formik={formik}
           dataCustom={options}
-        ></ISelect>
+        ></Select>
         <Button htmlType="submit" width="160px" height="40px" $fontSize="15px">
           Submit
         </Button>
