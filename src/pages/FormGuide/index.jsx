@@ -62,7 +62,7 @@ function FormGuide() {
       }, 500);
     },
   });
-  console.log();
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <Input
