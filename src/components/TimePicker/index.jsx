@@ -36,8 +36,8 @@ const TimePicker = ({
           <TimePickerBase
             ref={refTimePicker}
             name={name}
-            onChange={(time) => {
-              formik.setFieldValue(name, time);
+            onChange={(time, timeString) => {
+              formik.setFieldValue(name, timeString);
             }}
             status={errorMessage && "error"}
             {...props}
@@ -67,8 +67,8 @@ const TimePicker = ({
           <TimePickerBase.RangePicker
             ref={refTimePicker}
             name={name}
-            onChange={(time) => {
-              formik.setFieldValue(name, time);
+            onChange={(time, timeString) => {
+              formik.setFieldValue(name, timeString);
             }}
             status={errorMessage && "error"}
             {...props}

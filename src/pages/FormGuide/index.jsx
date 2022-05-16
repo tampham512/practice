@@ -169,9 +169,11 @@ function FormGuide() {
         label="Chọn Ngày/Tháng/Năm"
         name="datePicker"
         $width="343px"
-        defaultValue={moment(new Date(), "DD/MM/YYYY")}
         format="DD/MM/YYYY"
-        value={formik.values.datePicker}
+        value={
+          formik.values.datePicker &&
+          moment(formik.values.datePicker, "DD/MM/YYYY")
+        }
         formik={formik}
         errorMessage={formik.touched.datePicker && formik.errors.datePicker}
       />
@@ -183,7 +185,10 @@ function FormGuide() {
         $width="343px"
         name="timePicker"
         defaultValue={moment("00:00:00", "HH:mm:ss")}
-        value={formik.values.timePicker}
+        value={
+          formik.values.timePicker &&
+          moment(formik.values.timePicker, "HH:mm:ss")
+        }
         formik={formik}
         errorMessage={formik.touched.timePicker && formik.errors.timePicker}
       />
@@ -195,7 +200,13 @@ function FormGuide() {
         $type="range"
         $width="343px"
         name="rangePicker"
-        value={formik.values.rangePicker}
+        value={
+          formik.values.rangePicker && [
+            moment(formik.values.rangePicker[0], "HH:mm:ss"),
+            moment(formik.values.rangePicker[1], "HH:mm:ss"),
+          ]
+        }
+        // value={formik.values.rangePicker}
         formik={formik}
         errorMessage={formik.touched.rangePicker && formik.errors.rangePicker}
       />
