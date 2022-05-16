@@ -5,11 +5,11 @@ import {
   ErrorSelectBox,
   MessageSelect,
 } from "./styled";
-import { Select } from "antd";
+import { Select as SelectBase } from "antd";
 
-const { Option } = Select;
+const { Option } = SelectBase;
 
-const ISelect = ({
+const Select = ({
   status = "base",
   placeholder = "Chọn ...",
   margin = "16px 0",
@@ -60,7 +60,7 @@ const ISelect = ({
               {label}
             </LabelSelect>
           )}
-          <Select
+          <SelectBase
             placeholder={placeholder}
             onChange={(value) => {
               formik && formik.setFieldValue(name, value);
@@ -76,7 +76,7 @@ const ISelect = ({
                   {item.label}
                 </Option>
               ))}
-          </Select>
+          </SelectBase>
         </SelectBox>
       );
     case "error":
@@ -100,7 +100,7 @@ const ISelect = ({
               {label}
             </LabelSelect>
           )}
-          <Select
+          <SelectBase
             placeholder={placeholder}
             onChange={(value) => {
               formik && formik.setFieldValue(name, value);
@@ -116,7 +116,7 @@ const ISelect = ({
                   {item.label}
                 </Option>
               ))}
-          </Select>
+          </SelectBase>
           {errorMessage && (
             <MessageSelect
               fontSizeMessage={fontSizeMessage}
@@ -129,4 +129,4 @@ const ISelect = ({
       );
   }
 };
-export default ISelect;
+export default Select;

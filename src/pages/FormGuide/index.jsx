@@ -2,14 +2,17 @@ import React from "react";
 
 import { useFormik, FieldArray, FormikProvider } from "formik";
 
-import { Radio, Checkbox, DatePicker, TimePicker } from "antd";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import ISelect from "../../components/Select";
 import * as yup from "yup";
 import { FieldArrayStyled } from "./styled";
 
 import moment from "moment";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import Select from "../../components/Select";
+import Radio from "../../components/Radio";
+import Checkbox from "../../components/Checkbox";
+import DatePicker from "../../components/DatePicker";
+import TimePicker from "../../components/TimePicker";
 
 const options = [
   { value: "quang_nam", label: "Quảng Nam" },
@@ -31,9 +34,18 @@ const optionsRadio = [
 const validationSchema = yup.object({
   fullname: yup.string().required("Vui lòng nhập Tên đăng nhập/Email"),
   provinces: yup.string().required("Vui lòng chọn Tỉnh/Thành phố"),
-  timePicker: yup.string().required(),
-  datePicker: yup.string().required(),
-  rangePicker: yup.array().required(),
+  timePicker: yup
+    .string()
+    .required("Vui lòng chọn timePicker")
+    .nullable("Vui lòng chọn timePicker"),
+  datePicker: yup
+    .string()
+    .required("Vui lòng chọn Ngày/Tháng/Năm")
+    .nullable("Vui lòng chọn Ngày/Tháng/Năm"),
+  rangePicker: yup
+    .array()
+    .required("Vui lòng chọn rangePicker")
+    .nullable("Vui lòng chọn rangePicker"),
 });
 
 function FormGuide() {
@@ -77,7 +89,7 @@ function FormGuide() {
         }}
         errorMessage={formik.touched.fullname && formik.errors.fullname}
       />
-      <ISelect
+      <Select
         label="Tỉnh/Thành phố"
         placeholder="Chọn Tỉnh/Thành phố"
         name="provinces"
@@ -86,28 +98,23 @@ function FormGuide() {
         dataCustom={options}
         errorMessage={formik.touched.provinces && formik.errors.provinces}
       />
-      <div>
-        <Checkbox.Group
-          name="check"
-          options={optionsCheckBox}
-          value={formik.values.check}
-          onChange={(checkedValues) => {
-            formik.setFieldValue("check", checkedValues);
-          }}
-        />
-      </div>
+
+      <Checkbox
+        name="check"
+        options={optionsCheckBox}
+        value={formik.values.check}
+        formik={formik}
+      />
+
       <br />
-      <div>
-        <Radio.Group
-          label="Chọn Radio"
-          name="radio"
-          options={optionsRadio}
-          onChange={(e) => {
-            formik.setFieldValue("radio", e.target.value);
-          }}
-          value={formik.values.radio}
-        />
-      </div>
+
+      <Radio
+        name="radio"
+        options={optionsRadio}
+        formik={formik}
+        value={formik.values.radio}
+      />
+
       <br />
       <div>
         <FormikProvider value={formik}>
@@ -156,54 +163,44 @@ function FormGuide() {
           </FieldArray>
         </FormikProvider>
       </div>
-      <br></br>
-      <div>
-        <DatePicker
-          style={{ width: "343px" }}
-          defaultValue={moment(new Date(), "DD/MM/YYYY")}
-          format="DD/MM/YYYY"
-          value={formik.values.datePicker}
-          onChange={(time) => {
-            formik.setFieldValue("datePicker", time);
-          }}
-          status={
-            formik.touched.datePicker && formik.errors.datePicker ? "error" : ""
-          }
-        />
-      </div>
-      <br></br>
-      <div>
-        <TimePicker
-          style={{ width: "343px" }}
-          name="timePicker"
-          defaultValue={moment("00:00:00", "HH:mm:ss")}
-          value={formik.values.timePicker}
-          onChange={(time) => {
-            formik.setFieldValue("timePicker", time);
-          }}
-          status={
-            formik.touched.timePicker && formik.errors.timePicker ? "error" : ""
-          }
-        />
-      </div>
-      <br></br>
-      <div>
-        <TimePicker.RangePicker
-          style={{ width: "343px" }}
-          name="rangePicker"
-          value={formik.values.rangePicker}
-          onChange={(time) => {
-            formik.setFieldValue("rangePicker", time);
-          }}
-          status={
-            formik.touched.rangePicker && formik.errors.rangePicker
-              ? "error"
-              : ""
-          }
-        />
-        ;
-      </div>
-      <br></br>
+      <br />
+
+      <DatePicker
+        label="Chọn Ngày/Tháng/Năm"
+        name="datePicker"
+        $width="343px"
+        defaultValue={moment(new Date(), "DD/MM/YYYY")}
+        format="DD/MM/YYYY"
+        value={formik.values.datePicker}
+        formik={formik}
+        errorMessage={formik.touched.datePicker && formik.errors.datePicker}
+      />
+
+      <br />
+
+      <TimePicker
+        label="Chọn TimePicker"
+        $width="343px"
+        name="timePicker"
+        defaultValue={moment("00:00:00", "HH:mm:ss")}
+        value={formik.values.timePicker}
+        formik={formik}
+        errorMessage={formik.touched.timePicker && formik.errors.timePicker}
+      />
+
+      <br />
+
+      <TimePicker
+        label="Chọn RangePicker"
+        $type="range"
+        $width="343px"
+        name="rangePicker"
+        value={formik.values.rangePicker}
+        formik={formik}
+        errorMessage={formik.touched.rangePicker && formik.errors.rangePicker}
+      />
+
+      <br />
       <Button
         htmlType="submit"
         width="343px"
